@@ -1,0 +1,48 @@
+{
+  "name": "apiproxy",
+  "version": "1.0.0",
+  "description": "A proxy for front-end API calls\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MauricioRobayo/Projects.git"
+  },
+  "author": "Mauricio Robayo <rfmajo@gmail.com> (www.mauriciorobayo.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MauricioRobayo/Projects/issues"
+  },
+  "homepage": "https://github.com/MauricioRobayo/Projects#readme",
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.19.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
