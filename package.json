@@ -1,10 +1,11 @@
 {
   "name": "apiproxy",
   "version": "1.0.0",
-  "description": "A proxy for front-end API calls\"",
+  "description": "A proxy for front-end API calls",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
