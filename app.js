@@ -8,7 +8,7 @@ require('dotenv').config()
 const app = express()
 app.use(morgan('tiny'))
 
-const allowedOrigins = ['https://mauriciorobayo.github.io/weather-app']
+const allowedOrigins = ['https://mauriciorobayo.github.io']
 const corsOptions = {
   origin(origin, callback) {
     if (allowedOrigins.includes(origin)) {
