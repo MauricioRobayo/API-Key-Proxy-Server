@@ -6,11 +6,20 @@ const fetch = require('node-fetch')
 require('dotenv').config()
 
 const app = express()
-
 app.use(morgan('tiny'))
-app.use(cors())
 
-app.get('/weather', (req, res) => {
+const allowedOrigins = ['https://mauriciorobayo.github.io/weather-app']
+const corsOptions = {
+  origin(origin, callback) {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+}
+
+app.get('/weather', cors(corsOptions), (req, res) => {
   const API_URL = 'https://api.openweathermap.org/'
   const API_ENDPOINT = '/data/2.5/weather'
   const url = new URL(API_ENDPOINT, API_URL)
@@ -30,7 +39,8 @@ function notFound(req, res, next) {
   next(error)
 }
 
-function errorHandler(error, req, res) {
+// eslint-disable-next-line no-unused-vars
+function errorHandler(error, req, res, next) {
   res.status(res.statusCode || 500)
   res.json({
     message: error.message,
