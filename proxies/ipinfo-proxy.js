@@ -5,7 +5,7 @@ const querystring = require('querystring')
 const context = '/ipinfo'
 
 // The list of domains allowed to request to the proxy
-const allowedDomains = ['https://mauriciorobayo.github.io/weather-app']
+const allowedDomains = ['https://mauriciorobayo.github.io']
 
 const filter = (pathname, req) => {
   return (
