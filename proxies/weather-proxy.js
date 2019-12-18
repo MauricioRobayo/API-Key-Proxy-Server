@@ -5,7 +5,8 @@ const querystring = require('querystring')
 const context = '/weather'
 
 // The list of domains allowed to request to the proxy
-const allowedDomains = ['https://mauriciorobayo.github.io/weather-app']
+// Do not include a path or a trailing slash
+const allowedDomains = ['https://mauriciorobayo.github.io']
 
 const filter = (pathname, req) => {
   return (
