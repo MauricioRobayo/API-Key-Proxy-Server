@@ -192,6 +192,8 @@ Give it a ⭐️ if you like this project!
 
 ## Acknowledgments
 
+[![Matheus Approved](https://img.shields.io/badge/Mat-Approved-green)](https://github.com/matheus-fls/weather-app)
+
 All the heavy lifting is done by the [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware) module.
 
 The server is handled by [Express](https://expressjs.com/).
