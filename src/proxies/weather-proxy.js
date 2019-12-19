@@ -19,7 +19,7 @@ const options = {
   pathRewrite(path, req) {
     const queryparams = querystring.stringify({
       ...req.query,
-      appid: process.env.WEATHER_API_KEY,
+      appid: process.env.WEATHER_API_KEY, // add the `appid` key with the API KEY value
     })
     const newPath = path
       .split('?')[0]

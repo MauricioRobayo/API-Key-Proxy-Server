@@ -18,7 +18,7 @@ const options = {
   pathRewrite(path, req) {
     const queryparams = querystring.stringify({
       ...req.query,
-      token: process.env.IPINFO_API_KEY,
+      token: process.env.IPINFO_API_KEY, // add the `token` with the API KEY
     })
     const newPath = path.split('?')[0].replace(context, `?${queryparams}`)
     return newPath
