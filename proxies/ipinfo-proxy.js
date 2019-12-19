@@ -7,13 +7,10 @@ const context = '/ipinfo'
 // The list of domains allowed to request to the proxy
 const allowedDomains = ['https://mauriciorobayo.github.io']
 
-const filter = (pathname, req) => {
-  return (
-    pathname.match(`^${context}$`) &&
-    req.method === 'GET' &&
-    allowedDomains.includes(req.headers.origin)
-  )
-}
+const filter = (pathname, req) =>
+  pathname.match(`^${context}$`) &&
+  req.method === 'GET' &&
+  allowedDomains.includes(req.headers.origin)
 
 const options = {
   target: 'https://ipinfo.io/',
