@@ -17,7 +17,7 @@ fetch(`${endpoint}?appid=${apiKey}&q=${city}`)
   .then(json => handleData(json))
 ```
 
-After setting your proxy server you can call your new endpoint withou the API key:
+After setting your proxy server you can call your new endpoint without the API key:
 
 ```js
 const endpoint = 'https://calm-horse-55245.herokuapp.com/weather'
@@ -46,9 +46,9 @@ git clone https://github.com/MauricioRobayo/api-key-proxy-heroku
 heroku create
 ```
 
-3. Include your API keys on the Heroku app. On the dashboard go to `Settings` and look up for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [proxies](./proxies) folder.
+3. Include your API keys on the Heroku app. On the dashboard go to `Settings` and look up for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [proxies](./src/proxies) folder.
 
-4. Check the [proxies](./proxies) folder and modify the `allowedDomains` array on each proxy service to include the domains that you want to allow to connect to the proxy.
+4. Check the [proxies](./src/proxies) folder and modify the `allowedDomains` array on each proxy service to include the domains that you want to allow to connect to the proxy.
 
 ```js
 const allowedDomains = [
