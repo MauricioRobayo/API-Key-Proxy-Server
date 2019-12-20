@@ -7,6 +7,10 @@ const context = '/ipinfo'
 // The list of domains allowed to request to the proxy
 const allowedDomains = ['https://mauriciorobayo.github.io']
 
+if (process.env.NODE_ENV === 'development') {
+  allowedDomains.push('http://localhost:8080')
+}
+
 const filter = (pathname, req) =>
   pathname.match(`^${context}$`) &&
   req.method === 'GET' &&
@@ -23,7 +27,7 @@ const options = {
     const newPath = path.split('?')[0].replace(context, `?${queryparams}`)
     return newPath
   },
-  logLevel: 'info', // change to 'debug' for more info
+  logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
 }
 
 module.exports = proxy(filter, options)
