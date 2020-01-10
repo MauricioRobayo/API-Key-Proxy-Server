@@ -5,7 +5,7 @@ const querystring = require('querystring')
 const context = '/ipinfo'
 
 // The list of domains allowed to request to the proxy
-const allowedDomains = ['https://mauriciorobayo.github.io']
+const allowedDomains = ['https://www.mauriciorobayo.com']
 
 if (process.env.NODE_ENV === 'development') {
   allowedDomains.push('http://localhost:8080')
