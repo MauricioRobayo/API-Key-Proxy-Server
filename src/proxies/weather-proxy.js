@@ -6,7 +6,7 @@ const context = '/weather'
 
 // The list of domains allowed to request to the proxy
 // Do not include a path or a trailing slash
-const allowedDomains = ['https://mauriciorobayo.github.io']
+const allowedDomains = ['https://www.mauriciorobayo.com']
 
 if (process.env.NODE_ENV === 'development') {
   allowedDomains.push('http://localhost:8080')
