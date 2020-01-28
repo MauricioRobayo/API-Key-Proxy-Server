@@ -210,7 +210,7 @@ Now you can test drive your proxy server on your local machine for development:
 
 ## Contributing
 
-🤝 Contributions are welcome!
+All contributions are welcome!
 
 ## Show your support
 
@@ -224,6 +224,14 @@ All the heavy lifting is done by the [http-proxy-middleware](https://github.com/
 
 The server is handled by [Express](https://expressjs.com/).
 
+## About me
+
+Github: [@mauriciorobayo](https://github.com/MauricioRobayo)
+Twitter: [@mauriciorobayo\_](https://twitter.com/MauricioRobayo_)
+LinkedIn: [@mauriciorobayo](https://www.linkedin.com/in/MauricioRobayo)
+
 ## License
+
+This project is [MIT](LICENSE) licensed.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server?ref=badge_large)
