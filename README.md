@@ -193,6 +193,7 @@ Give it a ⭐️ if you like this project!
 ## Acknowledgments
 
 [![Matheus Approved](https://img.shields.io/badge/Mat-Approved-green)](https://github.com/matheus-fls/weather-app)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server?ref=badge_shield)
 
 All the heavy lifting is done by the [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware) module.
 
@@ -201,3 +202,6 @@ The server is handled by [Express](https://expressjs.com/).
 ## License
 
 This project is [MIT](LICENSE) licensed.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server?ref=badge_large)
