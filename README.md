@@ -63,17 +63,15 @@ heroku create
 
 Include your API keys on the Heroku app. On the dashboard go to `Settings` and look up for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [proxies](./src/proxies) folder. For example, in the case of the [Open Weather Api proxy](./src/proxies/weather-proxy.js) that is included with the code, the variable name is `WEATHER_API_KEY`.
 
-### 4. Allow the domains you want to request to the proxy
+### 4. Setup your API proxies
 
-Check the [proxies](./src/proxies) folder and modify the `allowedDomains` array on each proxy service to include the domains that you want to allow to connect to the proxy.
+You can include all the API services you want using the [`config`](src/config.js) file.
 
-```js
-const allowedDomains = [
-  'https://username.github.io',
-  'https://someapp.com',
-  'https://another.domain.com',
-]
-```
+The [`config`](src/config.js) exports an object with the following options:
+
+#### allowedDomains
+
+An **array** of domains you want to allow to make calls to the proxy server. All the domains not listed here will be rejected with a `cors` error.
 
 **Do not include pathnames:**
 
@@ -85,27 +83,55 @@ const allowedDomains = [
 - Wrong: `https://example.com/` ❌
 - Right: `https://example.com` ✔
 
-### 5. Include the proxies you need
+#### proxies
 
-Make sure to include the proxies you want on [`app.js`](./src/app.js) by using:
+An array with the configuraton options for each API service. The config file included provides configurations for `open weather`, `ipinfo`, and `github`. You can remove or add as many as you need:
 
 ```js
-const express = require('express')
-const debug = require('debug')('express:server')
-const weatherProxy = require('./proxies/weather-proxy')
-const ipinfoProxy = require('./proxies/ipinfo-proxy')
-const yourProxy = require('./proxies/some-api-proxy') // Include as many proxies as you need
-
-require('dotenv').config()
-
-const app = express()
-
-app.use(weatherProxy)
-app.use(ipinfoProxy)
-app.use(yourProxy) // Don't forget to tell express to use your new proxy
+[
+  {
+    route: '/weather',
+    allowedMethods: ['GET'],
+    target: 'https://api.openweathermap.org/data/2.5/weather',
+    queryparams: {
+      appid: process.env.WEATHER_API_KEY,
+    },
+  },
+  {
+    route: '/ipinfo',
+    allowedMethods: ['GET'],
+    target: 'https://ipinfo.io/',
+    queryparams: {
+      token: process.env.IPINFO_TOKEN,
+    },
+  },
+  {
+    route: '/github',
+    allowedMethods: ['GET'],
+    target: 'https://api.github.com',
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+    },
+    auth: `${process.env.GITHUB_USERNAME}:${process.env.GITHUB_TOKEN}`,
+  },
+],
 ```
 
-The code already includes the proxies for the Open Weather Api and for the IPinfo Api, so if you are using any of those services, you don't need to do anything here.
+The following are the options for a proxy config:
+
+**allowedDomains**: You can include specific allowed domains just for a specific proxy.
+
+**route**: The path on the proxy server. For example, if you set it to `'/weather'`, then you will access that API service through that path on your proxy server: `https://your-proxy-server.heroku.app/weather`.
+
+**allowedMethods**: An array of methods the server will proxy to the API service. It defaults to `'GET'`.
+
+**target**: The API endpoint that is going to be proxied by the proxy server. All request made to the `route` on the proxy server will be proxied to the `target` endpoint.
+
+**headers**: An object with the headers that will be added to the request made to the proxy server.
+
+**auth**: Basic authentication, for example: 'user:password' to compute an Authorization header.
+
+**queryparams**: Additional query params to be added to the request made to the proxy.
 
 ### 6. Commit your changes and deploy to Heroku
 
@@ -134,10 +160,11 @@ fetch(`${apiProxy}?q=${city}&units=${units}`)
 
 ## Test it with the Open Weather Api
 
-The code already includes two API services you can test drive it:
+The code already includes three API services you can test drive it:
 
-- [./src/proxies/weather-proxy](./src/proxies/weather-proxy.js) → https://openweathermap.org
-- [./src/proxies/ipinfo-proxy](./src/proxies/ipinfo-proxy.js) → https://ipinfo.io
+- [Open Weather Api](https://openweathermap.org/api)
+- [ipinfo](https://ipinfo.io/)
+- [GitHub with personal access tokens](https://developer.github.com/v3/auth/#via-oauth-and-personal-access-tokens)
 
 To test it on your local machine or for development purposes:
 
@@ -154,9 +181,7 @@ npm install
 Modify the `allowedDomains` array inside each proxy configuration inside the `proxies` folder to include the domains you want to allow. For example, if you are developing a front-end app on `http://localhost:8080` and you want to allow requests from that domain to the proxy:
 
 ```js
-const allowedDomains = [
-  'http://localhost:8080', // no trailing slash!
-]
+allowedDomains: ['http://localhost:8080']
 ```
 
 **Do not include pathnames:**
@@ -181,6 +206,7 @@ Now you can test drive your proxy server on your local machine for development:
 
 - `http://localhost:5000/weather` will include the `WEATHER_API_KEY` key from your `.env` file and forward the requests to the Open Weather Api.
 - `http://localhost:5000/ipinfo` will include the `IPINFO_API_KEY` key from your `.env` file and forward the requests to the IPinfo Api.
+- `http://localhost:5000/github` will include the basic authentication from your `.env` file and forward the requests to the GitHub Api.
 
 ## Contributing
 
