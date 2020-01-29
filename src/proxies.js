@@ -2,12 +2,14 @@ const proxy = require('http-proxy-middleware')
 const querystring = require('querystring')
 const config = require('./config')
 
-module.exports = config.proxies.map(
-  ({ route, queryparams, allowedDomains, allowedMethods, target }) => {
+const { allowedDomains: globalAllowedDomains = [], proxies } = config
+
+module.exports = proxies.map(
+  ({ route, queryparams, allowedDomains = [], allowedMethods, target }) => {
     const filter = (pathname, req) =>
       pathname === route &&
       allowedMethods.includes(req.method) &&
-      allowedDomains.includes(req.headers.origin)
+      [...globalAllowedDomains, ...allowedDomains].includes(req.headers.origin)
     const options = {
       target,
       changeOrigin: true,
