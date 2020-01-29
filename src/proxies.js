@@ -19,7 +19,7 @@ module.exports = config.proxies.map(
         const newPath = path.split('?')[0].replace(route, `?${qp}`)
         return newPath
       },
-      logLevel: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+      logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
     }
 
     return proxy(filter, options)
