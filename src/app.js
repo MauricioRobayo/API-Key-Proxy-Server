@@ -1,14 +1,9 @@
+require('dotenv').config()
 const express = require('express')
 const debug = require('debug')('express:server')
-const weatherProxy = require('./proxies/weather-proxy')
-const ipinfoProxy = require('./proxies/ipinfo-proxy')
-
-require('dotenv').config()
+const proxies = require('./proxies')
 
 const app = express()
-
-app.use(weatherProxy)
-app.use(ipinfoProxy)
 
 function notFound(req, res, next) {
   res.status(404)
@@ -24,6 +19,7 @@ function errorHandler(error, req, res, next) {
   })
 }
 
+proxies.forEach(proxy => app.use(proxy))
 app.use(notFound)
 app.use(errorHandler)
 
