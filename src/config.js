@@ -6,19 +6,28 @@ module.exports = {
   proxies: [
     {
       route: '/weather',
-      target: 'https://api.openweathermap.org/data/2.5/weather',
       allowedMethods: ['GET'],
+      target: 'https://api.openweathermap.org/data/2.5/weather',
       queryparams: {
         appid: process.env.WEATHER_API_KEY,
       },
     },
     {
       route: '/ipinfo',
-      target: 'https://ipinfo.io/',
       allowedMethods: ['GET'],
+      target: 'https://ipinfo.io/',
       queryparams: {
-        token: process.env.IPINFO_API_KEY,
+        token: process.env.IPINFO_TOKEN,
       },
+    },
+    {
+      route: '/github',
+      allowedMethods: ['GET'],
+      target: 'https://api.github.com',
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+      },
+      auth: `${process.env.GITHUB_USERNAME}:${process.env.GITHUB_TOKEN}`,
     },
   ],
 }

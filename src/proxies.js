@@ -5,14 +5,24 @@ const config = require('./config')
 const { allowedDomains: globalAllowedDomains = [], proxies } = config
 
 module.exports = proxies.map(
-  ({ route, queryparams, allowedDomains = [], allowedMethods, target }) => {
+  ({
+    route,
+    target,
+    allowedDomains = [],
+    allowedMethods = ['GET'],
+    queryparams = {},
+    headers = {},
+    auth,
+  }) => {
     const filter = (pathname, req) =>
-      pathname === route &&
+      pathname.startsWith(route) &&
       allowedMethods.includes(req.method) &&
       [...globalAllowedDomains, ...allowedDomains].includes(req.headers.origin)
     const options = {
       target,
       changeOrigin: true,
+      headers,
+      auth,
       pathRewrite(path, req) {
         const qp = querystring.stringify({
           ...req.query,
