@@ -26,8 +26,8 @@ module.exports = {
       target: 'https://api.github.com',
       headers: {
         Accept: 'application/vnd.github.v3+json',
+        Authorization: `Token ${process.env.GITHUB_TOKEN}`,
       },
-      auth: `${process.env.GITHUB_USERNAME}:${process.env.GITHUB_TOKEN}`,
     },
   ],
 }
