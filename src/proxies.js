@@ -28,7 +28,7 @@ module.exports = proxies.map(
           ...req.query,
           ...queryparams,
         })
-        const newPath = path.split('?')[0].replace(route, `?${qp}`)
+        const newPath = `${path.split('?')[0].replace(route, '')}?${qp}`
         return newPath
       },
       logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
