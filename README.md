@@ -14,9 +14,9 @@ A dead easy proxy server to remove the API keys from your front-end code.
 
 ## How it works
 
-Once you have it setup and deployed, redirect your API calls to the proxy server, this will handle the requests to the API service using your API key and give you back the response if you are an allowed origin.
+Once you have it setup and deployed, redirect your API calls to the proxy server, this will handle the requests to the API service using your authentication method and give you back the response if you are an allowed origin.
 
-You are able to set up as many API services as you like by providing different endpoints to each one of them.
+You are able to set up as many API services as you like by providing different endpoints to each one of them. Take a look at the [config](src/config.js) to get an idea on how to setup your API services.
 
 For example, let say you are using the [Open Weather Api](https://openweathermap.org/), so in your code you have a request that looks something like this:
 
