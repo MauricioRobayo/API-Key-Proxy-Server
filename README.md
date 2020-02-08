@@ -79,7 +79,7 @@ You can include all the API services you want using the [`config`](src/config.js
 - Wrong: `https://example.com/` ❌
 - Right: `https://example.com` ✔
 
-**proxies**: An array with the configuration options for each API service. The config file included provides configurations for `open weather`, `ipinfo`, and `github`. You can remove or add as many as you need:
+**proxies**: An array with the configuration options for each API service. The config file included provides configurations for [Open Weather API](https://openweathermap.org/api), the [ipinfo API](https://ipinfo.io/), and the [GitHub API](https://developer.github.com/v3/). You can remove or add as many as you need:
 
 ```js
 [
