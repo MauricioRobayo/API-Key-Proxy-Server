@@ -61,31 +61,25 @@ heroku create
 
 ### 3. Include your API keys
 
-Include your API keys on the Heroku app. On the dashboard go to `Settings` and look up for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [proxies](./src/proxies) folder. For example, in the case of the [Open Weather Api proxy](./src/proxies/weather-proxy.js) that is included with the code, the variable name is `WEATHER_API_KEY`.
+Include your API keys on the Heroku app. On the dashboard go to `Settings` and lookup for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [proxies](./src/proxies) folder. For example, in the case of the [Open Weather Api proxy](./src/proxies/weather-proxy.js) that is included with the code, the variable name is `WEATHER_API_KEY`.
 
-### 4. Setup your API proxies
+### 4. Set up your API proxies
 
-You can include all the API services you want using the [`config`](src/config.js) file.
+You can include all the API services you want using the [`config`](src/config.js) file which exports an object with the following options:
 
-The [`config`](src/config.js) exports an object with the following options:
+**allowedDomains**: An **array** of domains you want to allow to make calls to the proxy server. All the domains not listed here will be rejected with a `cors` error.
 
-#### allowedDomains
-
-An **array** of domains you want to allow to make calls to the proxy server. All the domains not listed here will be rejected with a `cors` error.
-
-**Do not include pathnames:**
+**Do not include pathnames**:
 
 - Wrong: `https://example.com/some-path` ❌
 - Right: `https://example.com` ✔
 
-**Do not include trailing slash:**
+**Do not include trailing slash**:
 
 - Wrong: `https://example.com/` ❌
 - Right: `https://example.com` ✔
 
-#### proxies
-
-An array with the configuraton options for each API service. The config file included provides configurations for `open weather`, `ipinfo`, and `github`. You can remove or add as many as you need:
+**proxies**: An array with the configuration options for each API service. The config file included provides configurations for `open weather`, `ipinfo`, and `github`. You can remove or add as many as you need:
 
 ```js
 [
@@ -117,7 +111,7 @@ An array with the configuraton options for each API service. The config file inc
 ],
 ```
 
-The following are the options for a proxy config:
+The following are the options for each proxy config:
 
 **allowedDomains**: You can include specific allowed domains just for a specific proxy.
 
@@ -125,7 +119,7 @@ The following are the options for a proxy config:
 
 **allowedMethods**: An array of methods the server will proxy to the API service. It defaults to `'GET'`.
 
-**target**: The API endpoint that is going to be proxied by the proxy server. All request made to the `route` on the proxy server will be proxied to the `target` endpoint.
+**target**: The API endpoint that's going to be proxied by the proxy server. All request made to the `route` on the proxy server will be proxied to the `target` endpoint.
 
 **headers**: An object with the headers that will be added to the request made to the proxy server.
 
@@ -133,7 +127,7 @@ The following are the options for a proxy config:
 
 **queryparams**: Additional query params to be added to the request made to the proxy.
 
-### 6. Commit your changes and deploy to Heroku
+### 5. Commit your changes and deploy to Heroku
 
 ```sh
 git commit -am"Update proxy settings"
@@ -146,7 +140,7 @@ Finally, you can use your Proxy server to redirect the requests from your front 
 // Original request
 const apiService = 'https://api.openweathermap.org/data/2.5/weather'
 fetch(`${apiService}?q=${city}&units=${units}&appid=${apiKey}`)
-  .then(response => response.json)
+  .then(response => response.json())
   .then(json => handleData(json))
 ```
 
@@ -154,11 +148,11 @@ fetch(`${apiService}?q=${city}&units=${units}&appid=${apiKey}`)
 // Request using your proxy
 const apiProxy = 'https://calm-horse-55245.herokuapp.com/weather'
 fetch(`${apiProxy}?q=${city}&units=${units}`)
-  .then(response => response.json)
+  .then(response => response.json())
   .then(json => handleData(json))
 ```
 
-## Test it with the Open Weather Api
+## Test it on development
 
 The code already includes three API services you can test drive it:
 
@@ -178,11 +172,13 @@ npm install
 
 ### 2. Allow the domains on the proxy
 
-Modify the `allowedDomains` array inside each proxy configuration inside the `proxies` folder to include the domains you want to allow. For example, if you are developing a front-end app on `http://localhost:8080` and you want to allow requests from that domain to the proxy:
+Modify the `allowedDomains` array inside inside the `config` file to include the domains you want to allow. For example, if you are developing a front-end app on `http://localhost:8080` and you want to allow requests from that domain to the proxy:
 
 ```js
 allowedDomains: ['http://localhost:8080']
 ```
+
+You can include as many allowed domains as you want.
 
 **Do not include pathnames:**
 
