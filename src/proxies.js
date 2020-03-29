@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const querystring = require('querystring')
 const config = require('./config')
 
@@ -34,6 +34,6 @@ module.exports = proxies.map(
       logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
     }
 
-    return proxy(filter, options)
+    return createProxyMiddleware(filter, options)
   },
 )
