@@ -13,7 +13,6 @@ function notFound(req: Request, res: Response, next: NextFunction) {
   next(error);
 }
 
-// eslint-disable-next-line no-unused-vars
 function errorHandler(error: Error, req: Request, res: Response) {
   res.status(res.statusCode || 500);
   res.json({
