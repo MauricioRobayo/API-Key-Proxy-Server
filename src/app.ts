@@ -2,7 +2,7 @@ require('dotenv').config();
 import express = require('express');
 import { Request, Response, NextFunction } from 'express';
 import Debug from 'debug';
-const proxies = require('./proxies');
+import proxies from './proxies';
 
 const debug = Debug('express:server');
 const app = express();
