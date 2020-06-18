@@ -1,4 +1,15 @@
-module.exports = {
+export type Proxy = {
+  route: string;
+  allowedMethods: string[];
+  target: string;
+  queryparams?: {};
+  headers?: {};
+};
+
+const config: {
+  allowedDomains: string[];
+  proxies: Proxy[];
+} = {
   allowedDomains:
     process.env.NODE_ENV === 'development'
       ? ['http://localhost:8080']
@@ -31,3 +42,5 @@ module.exports = {
     },
   ],
 };
+
+export default config;

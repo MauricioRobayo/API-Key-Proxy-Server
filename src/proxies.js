@@ -1,6 +1,7 @@
+import querystring from 'querystring';
+import config from './config'; // eslint-disable-line
+
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const querystring = require('querystring');
-const config = require('./config');
 
 const { allowedDomains: globalAllowedDomains = [], proxies } = config;
 
