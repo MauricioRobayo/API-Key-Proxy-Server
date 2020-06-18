@@ -1,11 +1,11 @@
 import querystring from 'querystring';
-import config from './config'; // eslint-disable-line
-
-const { createProxyMiddleware } = require('http-proxy-middleware');
+import config from './config';
+import { Request } from 'express';
+import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 
 const { allowedDomains: globalAllowedDomains = [], proxies } = config;
 
-module.exports = proxies.map(
+export default proxies.map(
   ({
     route,
     target,
@@ -15,16 +15,24 @@ module.exports = proxies.map(
     headers = {},
     auth,
   }) => {
-    const filter = (pathname, req) =>
-      pathname.startsWith(route) &&
-      allowedMethods.includes(req.method) &&
-      [...globalAllowedDomains, ...allowedDomains].includes(req.headers.origin);
-    const options = {
+    const filter = (pathname: string, req: Request) => {
+      if (typeof req.headers.origin === 'string') {
+        return (
+          pathname.startsWith(route) &&
+          allowedMethods.includes(req.method) &&
+          [...globalAllowedDomains, ...allowedDomains].includes(
+            req.headers.origin
+          )
+        );
+      }
+      return false;
+    };
+    const options: Options = {
       target,
       changeOrigin: true,
       headers,
       auth,
-      pathRewrite(path, req) {
+      pathRewrite(path: string, req: Request) {
         const qp = querystring.stringify({
           ...req.query,
           ...queryparams,

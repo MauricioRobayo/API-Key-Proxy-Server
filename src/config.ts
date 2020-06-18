@@ -4,6 +4,8 @@ export type Proxy = {
   target: string;
   queryparams?: {};
   headers?: {};
+  allowedDomains?: string[];
+  auth?: string;
 };
 
 const config: {
