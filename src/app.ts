@@ -1,25 +1,31 @@
 require('dotenv').config();
-const express = require('express');
+import express = require('express');
+import { Request, Response, NextFunction } from 'express';
 const debug = require('debug')('express:server');
 const proxies = require('./proxies');
 
 const app = express();
 
-function notFound(req, res, next) {
+function notFound(req: Request, res: Response, next: NextFunction) {
   res.status(404);
   const error = new Error('Not Found');
   next(error);
 }
 
 // eslint-disable-next-line no-unused-vars
-function errorHandler(error, req, res, next) {
+function errorHandler(
+  error: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   res.status(res.statusCode || 500);
   res.json({
     message: error.message,
   });
 }
 
-proxies.forEach((proxy) => app.use(proxy));
+proxies.forEach((proxy: any) => app.use(proxy));
 app.use(notFound);
 app.use(errorHandler);
 
