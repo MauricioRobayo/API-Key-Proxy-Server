@@ -1,8 +1,8 @@
-const { createProxyMiddleware } = require('http-proxy-middleware')
-const querystring = require('querystring')
-const config = require('./config')
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const querystring = require('querystring');
+const config = require('./config');
 
-const { allowedDomains: globalAllowedDomains = [], proxies } = config
+const { allowedDomains: globalAllowedDomains = [], proxies } = config;
 
 module.exports = proxies.map(
   ({
@@ -17,7 +17,7 @@ module.exports = proxies.map(
     const filter = (pathname, req) =>
       pathname.startsWith(route) &&
       allowedMethods.includes(req.method) &&
-      [...globalAllowedDomains, ...allowedDomains].includes(req.headers.origin)
+      [...globalAllowedDomains, ...allowedDomains].includes(req.headers.origin);
     const options = {
       target,
       changeOrigin: true,
@@ -27,13 +27,13 @@ module.exports = proxies.map(
         const qp = querystring.stringify({
           ...req.query,
           ...queryparams,
-        })
-        const newPath = `${path.split('?')[0].replace(route, '')}?${qp}`
-        return newPath
+        });
+        const newPath = `${path.split('?')[0].replace(route, '')}?${qp}`;
+        return newPath;
       },
       logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
-    }
+    };
 
-    return createProxyMiddleware(filter, options)
-  },
-)
+    return createProxyMiddleware(filter, options);
+  }
+);
