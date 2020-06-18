@@ -4,6 +4,7 @@
   "description": "A proxy for front-end API calls",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write **/*.{js,ts,json}",
     "start": "node built/app.js",
     "start:dev": "cross-env DEBUG=* NODE_ENV=development ts-node-dev src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -32,9 +33,7 @@
     "typescript": "^3.9.5"
   },
   "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all"
+    "singleQuote": true
   },
   "husky": {
     "hooks": {
@@ -42,7 +41,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,css,json,md}": [
+    "**/*.{js,ts,json}": [
       "prettier --write"
     ],
     "**/*.js": [
