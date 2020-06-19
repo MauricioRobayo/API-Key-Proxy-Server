@@ -3,11 +3,8 @@ import { Options } from 'http-proxy-middleware';
 export interface Proxy extends Options {
   route: string;
   allowedMethods: string[];
-  target: string;
   queryparams?: {};
-  headers?: {};
   allowedDomains?: string[];
-  auth?: string;
 }
 
 export interface Config {
