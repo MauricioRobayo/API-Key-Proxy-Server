@@ -1,4 +1,6 @@
-export type Proxy = {
+import { Options } from 'http-proxy-middleware';
+
+export interface Proxy extends Options {
   route: string;
   allowedMethods: string[];
   target: string;
@@ -6,12 +8,14 @@ export type Proxy = {
   headers?: {};
   allowedDomains?: string[];
   auth?: string;
-};
+}
 
-const config: {
+export interface Config {
   allowedDomains: string[];
   proxies: Proxy[];
-} = {
+}
+
+const config: Config = {
   allowedDomains:
     process.env.NODE_ENV === 'development'
       ? ['http://localhost:8080']
