@@ -14,9 +14,9 @@ export interface Config {
 
 const config: Config = {
   allowedDomains:
-    process.env.NODE_ENV === 'development'
-      ? ['http://localhost:8080']
-      : ['https://www.mauriciorobayo.com'],
+    process.env.NODE_ENV === 'production'
+      ? ['https://www.mauriciorobayo.com']
+      : ['http://localhost:8080'],
   proxies: [
     {
       route: '/weather',
