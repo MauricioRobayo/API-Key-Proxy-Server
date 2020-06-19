@@ -1,7 +1,7 @@
 import querystring from 'querystring';
 import config from './config';
 import { Request } from 'express';
-import { createProxyMiddleware, Options } from 'http-proxy-middleware';
+import { createProxyMiddleware, Options, Filter } from 'http-proxy-middleware';
 
 const { allowedDomains: globalAllowedDomains = [], proxies } = config;
 
@@ -15,7 +15,7 @@ export default proxies.map(
     headers = {},
     auth,
   }) => {
-    const filter = (pathname: string, req: Request) => {
+    const filter: Filter = (pathname: string, req: Request) => {
       if (typeof req.headers.origin === 'string') {
         return (
           pathname.startsWith(route) &&
