@@ -1,9 +1,10 @@
 import { Options } from 'http-proxy-middleware';
+import { ParsedUrlQueryInput } from 'querystring';
 
 export interface Proxy extends Options {
   route: string;
   allowedMethods: string[];
-  queryparams?: {};
+  queryparams?: ParsedUrlQueryInput;
   allowedDomains?: string[];
 }
 

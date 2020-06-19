@@ -1,8 +1,11 @@
-require('dotenv').config();
-import express = require('express');
 import { Request, Response, NextFunction } from 'express';
 import Debug from 'debug';
+import dotenv = require('dotenv');
 import proxies from './proxies';
+
+dotenv.config();
+
+import express = require('express');
 
 const debug = Debug('express:server');
 const app = express();
@@ -20,7 +23,7 @@ function errorHandler(error: Error, req: Request, res: Response) {
   });
 }
 
-proxies.forEach((proxy: any) => app.use(proxy));
+proxies.forEach((proxy) => app.use(proxy));
 app.use(notFound);
 app.use(errorHandler);
 
