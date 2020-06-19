@@ -1,7 +1,7 @@
-import querystring from 'querystring';
-import config from './config';
+import querystring, { ParsedUrlQueryInput } from 'querystring';
 import { Request } from 'express';
 import { createProxyMiddleware, Options, Filter } from 'http-proxy-middleware';
+import config from './config';
 
 const { allowedDomains: globalAllowedDomains = [], proxies } = config;
 
@@ -36,7 +36,7 @@ export default proxies.map(
         const qp = querystring.stringify({
           ...req.query,
           ...queryparams,
-        });
+        } as ParsedUrlQueryInput);
         const newPath = `${path.split('?')[0].replace(route, '')}?${qp}`;
         return newPath;
       },
