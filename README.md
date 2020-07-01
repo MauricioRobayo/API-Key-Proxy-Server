@@ -1,5 +1,4 @@
 # API Key Proxy Server
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=MauricioRobayo/api-key-proxy-server)](https://dependabot.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/mauriciorobayo/api-key-proxy-server/badge)](https://www.codefactor.io/repository/github/mauriciorobayo/api-key-proxy-server)
 
 A dead easy proxy server to remove the API keys from your front-end code.
