@@ -1,7 +1,7 @@
 # API Key Proxy Server
 [![CodeFactor](https://www.codefactor.io/repository/github/mauriciorobayo/api-key-proxy-server/badge)](https://www.codefactor.io/repository/github/mauriciorobayo/api-key-proxy-server)
 
-A dead easy proxy server to remove the API keys from your front-end code.
+A dead easy proxy server to remove your front-end API keys.
 
 ## Table of contents
 
