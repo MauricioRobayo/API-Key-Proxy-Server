@@ -1,11 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import Debug from 'debug';
+import express = require('express');
 import dotenv = require('dotenv');
-import proxies from './proxies';
-
 dotenv.config();
 
-import express = require('express');
+import proxies from './proxies';
 
 const debug = Debug('express:server');
 const app = express();
