@@ -19,6 +19,7 @@ const proxiesMiddlewares: RequestHandler[] = proxies.map(
     queryparams = {},
     headers = {},
     auth,
+    changeOrigin = true,
   }) => {
     const filter: Filter = (pathname: string, req: Request) => {
       if (typeof req.headers.origin === 'string') {
@@ -34,7 +35,7 @@ const proxiesMiddlewares: RequestHandler[] = proxies.map(
     };
     const options: Options = {
       target,
-      changeOrigin: true,
+      changeOrigin,
       headers,
       auth,
       pathRewrite(path: string, req: Request) {
