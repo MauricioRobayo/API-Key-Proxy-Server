@@ -4,7 +4,7 @@ import express = require('express');
 import dotenv = require('dotenv');
 dotenv.config();
 
-import proxies from './proxies';
+import proxiesMiddlewares from './proxies';
 
 const debug = Debug('express:server');
 const app = express();
@@ -22,7 +22,8 @@ function errorHandler(error: Error, req: Request, res: Response) {
   });
 }
 
-proxies.forEach((proxy) => app.use(proxy));
+proxiesMiddlewares.forEach((proxyMiddleware) => app.use(proxyMiddleware));
+
 app.use(notFound);
 app.use(errorHandler);
 

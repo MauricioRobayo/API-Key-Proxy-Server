@@ -1,11 +1,16 @@
 import querystring, { ParsedUrlQueryInput } from 'querystring';
 import { Request } from 'express';
-import { createProxyMiddleware, Options, Filter } from 'http-proxy-middleware';
+import {
+  createProxyMiddleware,
+  Options,
+  Filter,
+  RequestHandler,
+} from 'http-proxy-middleware';
 import config from './config';
 
 const { allowedDomains: globalAllowedDomains = [], proxies } = config;
 
-export default proxies.map(
+const proxiesMiddlewares: RequestHandler[] = proxies.map(
   ({
     route,
     target,
@@ -46,3 +51,5 @@ export default proxies.map(
     return createProxyMiddleware(filter, options);
   }
 );
+
+export default proxiesMiddlewares;
