@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import Debug from 'debug';
 import express from 'express';
-import dotenv = require('dotenv');
-dotenv.config();
-
+import { resolve } from 'path';
+import { config } from 'dotenv';
+// This needs to be before proxies so that module also has access to .env
+config({ path: resolve(__dirname, '../.env') });
 import proxiesMiddlewares from './proxies';
 
 const debug = Debug('express:server');
