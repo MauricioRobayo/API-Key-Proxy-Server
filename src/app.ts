@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import Debug from 'debug';
-import express = require('express');
+import express from 'express';
 import dotenv = require('dotenv');
 dotenv.config();
 
