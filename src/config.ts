@@ -14,10 +14,7 @@ export interface Proxy extends Options {
 }
 
 const config: Config = {
-  allowedDomains:
-    process.env.NODE_ENV === 'production'
-      ? ['https://www.mauriciorobayo.com']
-      : ['http://localhost:8080'],
+  allowedDomains: ['https://www.mauriciorobayo.com'],
   proxies: [
     {
       route: '/weather',
