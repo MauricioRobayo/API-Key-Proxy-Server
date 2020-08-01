@@ -17,7 +17,7 @@ A dead easy proxy server to remove your front-end API keys.
 
 Once you have it setup and deployed, redirect your API calls to the proxy server, this will handle the requests to the API service using your authentication method and give you back the response if you are an allowed origin.
 
-You are able to set up as many API services as you like by providing different endpoints to each one of them. Take a look at the [config](src/config.js) to get an idea on how to setup your API services.
+You are able to set up as many API services as you like by providing different endpoints to each one of them. Take a look at the [config](src/config.ts) to get an idea on how to setup your API services.
 
 For example, let say you are using the [Open Weather Api](https://openweathermap.org/), so in your code you have a request that looks something like this:
 
@@ -50,7 +50,7 @@ To get your proxy server up and running:
 ### 1. Clone the repository
 
 ```sh
-git clone https://github.com/MauricioRobayo/api-key-proxy-heroku.git
+git clone https://github.com/mauriciorobayo/api-key-proxy-server.git
 ```
 
 ### 2. Move into the repository and create a new Heroku app
@@ -62,11 +62,11 @@ heroku create
 
 ### 3. Include your API keys
 
-Include your API keys on the Heroku app. On the dashboard go to `Settings` and lookup for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [proxies](./src/proxies) folder. For example, in the case of the [Open Weather Api proxy](./src/proxies/weather-proxy.js) that is included with the code, the variable name is `WEATHER_API_KEY`.
+Include your API keys on the Heroku app. On the dashboard go to `Settings` and lookup for the `Config Vars` section. Copy and paste your API keys there using the same variable name you are using to retrieve it on each proxy service on the [config.ts](./src/config.ts) file. For example, in the case of the [Open Weather Api proxy] that is included with the code, the variable name is `WEATHER_API_KEY`.
 
 ### 4. Set up your API proxies
 
-You can include all the API services you want using the [`config`](src/config.js) file which exports an object with the following options:
+You can include all the API services you want using the [`config.ts`](src/config.ts) file which exports an object with the following options:
 
 **allowedDomains**: An **array** of domains you want to allow to make calls to the proxy server. All the domains not listed here will be rejected with a `cors` error.
 
