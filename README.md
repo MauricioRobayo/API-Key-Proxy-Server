@@ -80,6 +80,12 @@ You can include all the API services you want using the [`config.ts`](src/config
 - Wrong: `https://example.com/` ❌
 - Right: `https://example.com` ✔
 
+Example:
+
+```js
+allowedDomains: ['https://www.mauriciorobayo.com', 'https://example.com']
+```
+
 **proxies**: An array with the configuration options for each API service. The config file included provides configurations for [Open Weather API](https://openweathermap.org/api), the [ipinfo API](https://ipinfo.io/), and the [GitHub API](https://developer.github.com/v3/). You can remove or add as many as you need:
 
 ```js
@@ -171,31 +177,13 @@ cd api-key-proxy-heroku
 npm install
 ```
 
-### 2. Allow the domains on the proxy
+You don't need to specify the allowed domains when testing on your local machine in the development environment. By default, all domains are whitelisted so you don't need to figure out exactly which domain and port your browser or api client uses to make requests.
 
-Modify the `allowedDomains` array inside inside the `config` file to include the domains you want to allow. For example, if you are developing a front-end app on `http://localhost:8080` and you want to allow requests from that domain to the proxy:
-
-```js
-allowedDomains: ['http://localhost:8080']
-```
-
-You can include as many allowed domains as you want.
-
-**Do not include pathnames:**
-
-- Wrong: `https://example.com/some-path` ❌
-- Right: `https://example.com` ✔
-
-**Do not include trailing slash:**
-
-- Wrong: `https://example.com/` ❌
-- Right: `https://example.com` ✔
-
-### 3. Provide your API keys
+### 2. Provide your API keys
 
 Copy the `.env.sample` file included in the root of the repo to a file named `.env` also in the root of the repo, and include your API keys there.
 
-### 4. Test the proxy server
+### 3. Test the proxy server
 
 Start the development server with `npm run start:dev`.
 
