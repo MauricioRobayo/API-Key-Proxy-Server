@@ -21,6 +21,9 @@ const proxiesMiddlewares: RequestHandler[] = proxies.map((options) => {
   } = options;
 
   const filter: Filter = (pathname: string, req: Request) => {
+    if (process.env.NODE_ENV === 'development') {
+      return pathname.startsWith(route) && allowedMethods.includes(req.method);
+    }
     if (typeof req.headers.origin === 'string') {
       return (
         pathname.startsWith(route) &&
