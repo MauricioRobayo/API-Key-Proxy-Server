@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.6",
+    "@types/express": "^4.17.11",
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
