@@ -218,5 +218,3 @@ LinkedIn: [@mauriciorobayo](https://www.linkedin.com/in/MauricioRobayo)
 ## License
 
 This project is [MIT](LICENSE) licensed.
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMauricioRobayo%2Fapi-key-proxy-server?ref=badge_large)
